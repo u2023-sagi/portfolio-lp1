@@ -1,0 +1,727 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "YuMincho", "游明朝", "Yu Mincho", serif;
+  line-height: 1.6;
+  color: #333;
+  font-size: 100%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  /* vertical-align: bottom; */
+}
+h2 {
+  font-size: 1.5em;
+  color: #060459;
+  position: relative;
+  text-align: center;
+  /* display: inline-block; */
+  padding-bottom: 5px; /* 下線との間隔 */
+}
+h2::after {
+  background-color: #060459; /* 下線の色 */
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 70px; /* 下線の長さ */
+  height: 2px; /* 下線の太さ */
+}
+h3 {
+  font-size: 1.25em;
+}
+
+.btn {
+  text-align: center;
+}
+.btn a {
+  color: #fff;
+  padding: 15px 25px 15px 92px;
+  background-color: #beaf84;
+  background-image: url(../img/cart.png);
+  background-repeat: no-repeat;
+  background-size: 49px 49px;
+  background-position: left 25px center; /*左から25pxの位置、上下はセンター  */
+  border-radius: 30px;
+  min-width: 260px;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.25em;
+  font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium",
+    "游ゴシック", "Yu Gothic", sans-serif;
+  font-weight: bold;
+}
+.btn a:hover,
+.btn a:focus {
+  background-color: #9f3448;
+}
+/*-----------------------
+         header
+---------------------  */
+#main_header {
+  height: 80px;
+  background-color: #f8f5ef;
+}
+#main_header img {
+  width: 80px;
+  margin-left: 5.33vw;
+}
+/* メニューを画面上部に固定表示しています */
+.gMenu {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+/* メニューアイコンを画面右上に固定しています */
+.gMenu .menu-icon {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  padding-top: 5px;
+  height: 12px;
+}
+/* メニューアイコン（三本線）の真ん中の線です */
+.gMenu .menu-icon .navicon {
+  background: #060459; /* 色は自由に変更可能です */
+  display: block;
+  height: 2px; /* 太さ */
+  width: 31px; /* 長さ */
+  position: relative;
+  transition: background 0.4s ease-out; /* 形が変わる時のアニメーション */
+}
+/* メニューアイコン（三本線）の上と下の線を疑似要素で追加 */
+.gMenu .menu-icon .navicon::before,
+.gMenu .menu-icon .navicon::after {
+  background: #060459; /* 色は自由に変更可能です */
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.4s ease-out; /* 形が変わる時のアニメーション */
+  width: 100%;
+}
+.gMenu .menu-icon .navicon::before {
+  top: 10px;
+} /* 位置を上にずらしています */
+.gMenu .menu-icon .navicon::after {
+  top: -10px;
+} /* 位置を下にずらしています */
+/* 表示されるメニューです */
+.gMenu .menu {
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  max-height: 0; /* ★最初は高さを0にして非表示状態に */
+  transition: max-height 0.6s; /* 表示されるときのアニメーション */
+  text-align: center;
+}
+/* メニュー部分のデザインです */
+.gMenu .menu li:first-of-type {
+  padding-top: 10px;
+}
+.gMenu .menu li a {
+  color: #333;
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.gMenu .menu li a:hover,
+.gMenu .menu li a:focus {
+  color: #fff;
+  background-color: #beaf84;
+}
+/* チェックボックスは常に非表示です */
+.gMenu .menu-btn {
+  display: none;
+}
+/* ▼▼▼以下はチェックボックスがONの時の状態です▼▼▼ */
+.gMenu .menu-btn:checked ~ .menu {
+  max-height: 338px; /* ★チェックボックスがオンの時高さを338pxにして表示させます */
+  transition: max-height 0.6s;
+}
+/* メニューボタンの中央の線を非表示に */
+.gMenu .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+/* メニューボタンの上下の線を45度傾けて✕印を作ります */
+.gMenu .menu-btn:checked ~ .menu-icon .navicon::before {
+  transform: rotate(-45deg);
+  top: 0;
+}
+.gMenu .menu-btn:checked ~ .menu-icon .navicon::after {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+/*-----------------------
+        hero
+---------------------  */
+#hero .img_box {
+  margin: 0 5.33vw;
+  text-align: center;
+}
+#hero .btn{
+  margin-top: 1rem;
+}
+#hero .only_pc{
+  display: none;
+}
+/* 601px以上になったら */
+@media (min-width:601px){
+  #hero .only_pc{
+    display: block;
+    margin: 0 auto;
+  }
+  #hero .only_sp{
+    display: none;
+  }
+ #hero h1{
+  text-align: center;
+ }
+ #hero .btn{
+  margin-top: 3rem;
+}
+}
+
+/*-----------------------
+        products
+---------------------  */
+#products {
+  background-image: linear-gradient(#f8f5ef, #fff);
+}
+
+#products .wrapper {
+  background-image: linear-gradient(#f8f5ef, #fff);
+  padding-top: 1.5rem;
+  
+  padding-left: 5.33vw;
+  padding-right: 5.33vw;
+  margin-top: 3rem;
+}
+.products {
+  margin-top: 3rem;
+}
+#products h3 {
+  text-align: center;
+  color: #060459;
+}
+#products .box {
+  margin-top: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5.33vw;
+}
+#products .img_box{
+  text-align: center;
+}
+#products .box p {
+  font-weight: bold;
+}
+#products .text {
+  margin-top: 0.5em;
+}
+#products .btn {
+  margin-top: 1em;
+}
+/* 601px以上になったら */
+@media (min-width:601px){
+  #products .wrapper {
+    margin-top: 6rem;
+    padding-top: 3rem;
+    padding-left: 3.23vw;
+  padding-right: 3.23vw;
+}
+#products .container{
+  display: flex;
+  gap:3.23vw;
+}
+#products .products{
+  flex: 1;
+}
+}
+/*-----------------------
+        about
+---------------------  */
+#about {
+  background-color: #02133e;
+}
+#about .wrapper {
+  margin-top: 3rem;
+  margin-left: 5.33vw;
+  margin-right: 5.33vw;
+  /* padding-top: 1.5rem; */
+  padding-bottom: 3rem;
+}
+#about img {
+  margin-top: 3rem;
+
+}
+#about .box {
+  background: url(../img/bg.png) no-repeat center/cover;
+
+  margin-left: -5.33vw;
+  margin-right: -5.33vw;
+  padding-top: 1.5rem;
+}
+#about h2,
+#about h3,
+#about p {
+  color: #fff;
+}
+#about h2::after {
+  background-color: #fff; /* 下線の色 */
+}
+#about .point {
+  font-size: 1.25em;
+  position: relative;
+  padding: 0 65px;
+}
+
+#about .point:before {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 0;
+  width: 100%;
+  height: 2px;
+  content: "";
+  background: #fff;
+}
+
+#about .point span {
+  position: relative;
+  padding: 0 1em;
+  background: #02133e;
+}
+
+#about h3,
+#about p {
+  text-align: center;
+}
+#about .about {
+  margin-top: 1.6rem;
+}
+#about .text {
+  margin-top: 1em;
+}
+#about .btn {
+  margin-top: 3rem;
+}
+/* 601px以上になったら */
+@media (min-width:601px){
+  #about .wrapper {
+  margin-top: 6rem;
+  margin-left: 3.23vw;
+  margin-right: 3.23vw;
+  padding-bottom: 6rem;
+}
+#about .box {
+  margin-left: -3.23vw;
+  margin-right: -3.23vw;
+  padding-top: 3rem;
+  text-align: center;
+}
+#about .container{
+  display: flex;
+  gap:3.23vw;
+}
+#about .about{
+  flex: 1;
+}
+}
+/*-----------------------
+        howto
+---------------------  */
+#howto{
+  color: #060459;
+}
+#howto .wrapper{
+  margin-top: 3rem;
+  margin-left: 5.33vw;
+  margin-right: 5.33vw;
+  padding: 1.5rem 5.33vw;
+  border: 3px solid #060459;
+}
+
+#howto h2::after{
+  content: none;
+  height: 0;
+}
+#howto .title_text{
+  text-align: center;
+  font-weight: bold;
+  margin-top: -0.625em;
+}
+#howto h3, #howto .text{
+  text-align: center;
+  margin-top: 0.5em;
+}
+#howto .img_box{
+  width: 50%;
+  margin: 0 auto;
+}
+#howto .howto{
+  margin-top: 3rem;
+}
+#howto span{
+  margin-right: 20px;
+}
+/* 601px以上になったら */
+@media (min-width:601px){
+  #howto .wrapper {
+    margin-top: 6rem;
+    margin-left: 3.23vw;
+    margin-right: 3.23vw;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  
+}
+/* 1024px以上になったら */
+@media (min-width:1024px){
+  #howto .container{
+    display: flex;
+    gap: 3.23vw;
+  }
+  #howto .howto{
+    flex: 1;
+  }
+  #howto .img_box{
+    height: 60%;
+  }
+
+}
+
+/*-----------------------
+        reviews
+---------------------  */
+#reviews .wrapper{
+  background-image: linear-gradient(#f8f5ef, #fff);
+  margin-top: 3rem;
+  padding: 3rem 5.33vw;
+}
+#reviews h3{
+  font-size: 1em;
+}
+#reviews img{
+  border-radius: 50%;
+}
+#reviews p{
+  margin-top: 1em;
+}
+#reviews .box{
+  display: flex;
+  align-items: center;
+  gap:20px;
+}
+
+#reviews .item{
+  flex: 1;
+}
+#reviews .row-reverse{
+  flex-direction: row-reverse;
+}
+#reviews .review{
+  margin-top: 1.6rem;
+}
+#reviews .btn{
+  margin-top: 3rem;
+}
+/* 601px以上になったら */
+@media (min-width:601px){
+#reviews .wrapper {
+  margin-top: 6rem;
+  padding: 3rem 3.23vw;
+}
+
+}
+/* 1024px以上になったら */
+@media (min-width:1024px){
+  #reviews .box{
+    display: block;
+  }
+  #reviews .container{
+    display: flex;
+    gap: 3.23vw;
+  }
+  #reviews .review{
+    flex: 1;
+  }
+}
+/*-----------------------
+        campaign
+---------------------  */
+#campaign .wrapper{
+  background-color: #060459;
+  margin-top: 3rem;
+  padding: 1.5rem 5.33vw 3rem 5.33vw;
+}
+#campaign h2{
+  color: #fff;
+}
+#campaign h2::after{
+  background-color: #fff;
+}
+#campaign .campaign{
+  margin-top: 1.6rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 3px dotted #fff;
+}
+#campaign .campaign:nth-of-type(1){
+  margin-top: 3rem;
+}
+#campaign .campaign:nth-of-type(4){
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+#campaign p{
+  color: #fff;
+  margin-top: 0.5em;
+}
+#campaign span{
+  margin-right: 20px;
+}
+#campaign .btn{
+  margin-top: 3rem;
+}
+
+#campaign .heading {
+	position: relative;
+	padding-left: 60px;
+	font-size: 20px;
+  color: #fff;
+}
+
+#campaign .heading::before {
+	content: attr(data-number);
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	color: rgba(255, 255, 255, 0.819);
+	font-size: 2.5em;
+}
+
+#campaign .heading::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100px;
+	height: 1px;
+	background-color: rgba(255, 255, 255, 0.819);
+}
+#campaign .only_pc{
+  display: none;
+}
+/* 601px以上になったら */
+@media (min-width:601px){
+  #campaign .wrapper {
+    margin-top: 3rem;
+    padding: 3rem 3.23vw;
+  }
+  #campaign .only_sp{
+    display: none;
+  }
+
+  
+  }
+  /* 1024px以上になったら */
+@media (min-width:1024px){
+  #campaign .container{
+    display: flex;
+    gap: 3.23vw;
+    margin-top: 1.6rem;
+  }
+
+  #campaign .campaign{
+    flex: 1;
+    margin-top: 0;
+    padding: 1rem;
+    border: 3px dotted #fff;
+  }
+  #campaign .campaign:nth-of-type(1){
+    margin-top: 0;
+  }
+
+  #campaign .campaign:nth-of-type(4){
+    border:3px dotted #fff;
+
+  }
+  #campaign p{
+    
+    margin-top: 1em;
+  }
+  #campaign .only_pc{
+    display: block;
+  }
+}
+/*-----------------------
+        faq
+---------------------  */
+#faq .wrapper{
+  background:url(../img/bg3.png) no-repeat right center/cover;
+
+  padding: 1.5rem 5.33vw 3rem 5.33vw;
+}
+#faq .btn{
+  margin-top: 3rem;
+}
+.cp_qa *, .cp_qa *:after, .cp_qa *:before {
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.cp_qa .cp_actab {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	margin: 1.6rem 0 0 0;
+	color: #706957;
+}
+.cp_qa .cp_actab input {
+	position: absolute;
+	opacity: 0;
+}
+/* 質問 */
+.cp_qa .cp_actab label {
+	font-weight: bold;
+	line-height: 1.6em;
+	position: relative;
+	display: block;
+	margin: 0 0 0 0;
+	padding: 1em 2em 1em 2.5em;
+	cursor: pointer;
+	text-indent: 1em;
+	border-radius: 0.5em;
+	background: rgba(190, 175, 132, 0.493);
+}
+.cp_qa .cp_actab label::before {
+	font-family: serif;
+	font-size: 1.5em;
+	margin-left: -2em;
+	padding-right: 0.5em;
+	content: 'Q';
+}
+.cp_qa .cp_actab label:hover {
+	transition: all 0.3s;
+	color: #beaf84;
+}
+/* --質問の＋アイコン */
+.cp_qa .cp_actab label::after {
+	font-size: 1.7em;
+	font-weight: bold;
+	line-height: 2em;
+	position: absolute;
+	top: 0;
+	right: 0;
+	content: '+';
+	display: inline-block;
+	width: 2em;
+	height: 2em;
+	-webkit-transition: transform 0.4s;
+	        transition: transform 0.4s;
+}
+/* 答え */
+.cp_qa .cp_actab .cp_actab-content {
+	position: relative;
+	overflow: hidden;
+	max-height: 0;
+	padding: 0 0 0 2.5em;
+	-webkit-transition: max-height 0.2s;
+	        transition: max-height 0.2s;
+	border-radius: 0 0 0.5em 0.5em;
+}
+.cp_qa .cp_actab .cp_actab-content::before {
+	font-family: serif;
+	font-size: 1.5em;
+	position: absolute;
+	margin: 0.4em 0 0 -1em;
+	padding: 0;
+	content: 'A';
+  color: #706957;
+}
+.cp_qa .cp_actab .cp_actab-content p {
+	margin: 1em 1em 1em 0;
+  color: #706957;
+}
+/* 質問を開いた時の仕様 */
+/* --答えの高さ */
+.cp_qa .cp_actab input:checked ~ .cp_actab-content {
+	max-height: 40em;
+	border: 10px solid rgba(190, 175, 132, 0.493);
+}
+/* 質問をクリックした時のアイコンの動き */
+.cp_qa .cp_actab input:checked ~ label {
+	color: #fff;
+	border-radius: 0.5em 0.5em 0 0;
+}
+/* 質問をクリックした時の+の動き */
+.cp_qa .cp_actab input[type=checkbox]:checked + label::after {
+	-webkit-transform: rotateZ(45deg);
+	transform: rotateZ(45deg);
+	-webkit-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+}
+/* 601px以上になったら */
+@media (min-width:601px){
+  #faq .wrapper{
+    padding: 3rem 3.23vw;
+  }
+}
+/*-----------------------
+        footer
+---------------------  */
+#main_footer .wrapper{
+  background-color:#f8f5ef;
+  padding: 3rem 5.33vw;
+}
+
+#main_footer a{
+  text-decoration: none;
+  color: #060459;
+}
+#main_footer a:hover, #main_footer a:focus{
+  border-bottom: 1px solid #060459;
+}
+#main_footer img{
+  margin-top: 1.6rem;
+  width: 80px;
+}
+#main_footer p{
+  text-align: center;
+}
+#main_footer nav{
+  text-align: center;
+  line-height: 2;
+}
+/* 601px以上になったら */
+@media (min-width:601px){
+  #main_footer .wrapper{
+
+    padding: 3rem 3.23vw;
+  }
+  #main_footer img{
+    width: 120px;
+  }
+  #main_footer .container{
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+        gap: 3.23vw;
+  }
+}
